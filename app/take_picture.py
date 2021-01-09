@@ -11,12 +11,17 @@ cam = cv2.VideoCapture(0)
 img_counter = 0
 
 while True:
+    print('started')
     ret, frame = cam.read()
     if not ret:
         print("failed to grab frame")
         break
 
     img_name = "../images/metminiwx_sky_image_{}.png".format(img_counter)
+    img_name = "../images/metminiwx_sky_image_" + time.ctime()  + '.png'
+    img_name = img_name.replace('  ', ' ')
+    img_name = img_name.replace(' ', '_')
+    img_name = img_name.replace(':', '_')
     cv2.imwrite(img_name, frame)
     print("{} written to disk".format(img_name))
     img_counter += 1
