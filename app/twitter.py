@@ -12,7 +12,7 @@ ACCESS_TOKEN_SECRET   = 'ZmtLBKNHVlnzImahZbMUgegz0PBM9st1fx7FIngDA'
 
 
 # FIXME : add lat and lon to the tweet in the future
-def send_tweet(tweet, lat, lon, hashtags=None, image_pathname=None):
+def send_tweet(tweet_text, hashtags=None, image_pathname=None):
     """
 
     :param tweet:
@@ -29,7 +29,7 @@ def send_tweet(tweet, lat, lon, hashtags=None, image_pathname=None):
 
     # Create a tweet
     ts = time.ctime()
-    tweet_full = ts + " : " + tweet
+    tweet_full = ts + " : " + tweet_text
     if hashtags:
         for hashtag in hashtags:
             hashtag_str += '#' + hashtag + ' '
@@ -39,22 +39,22 @@ def send_tweet(tweet, lat, lon, hashtags=None, image_pathname=None):
     # Send tweet
     print('send_tweet() : ' + tweet_full)
     # status = api.update_status(tweet_full, lat=lat, long=lon)
-    status = 'testing'
+
 
     # send image
     if image_pathname is not None:
-        api.update_with_media(image_pathname, status=status)
+        api.update_with_media(image_pathname, status=tweet_full)
 
-    return status
+    return
 
 
 # basic test script - not used otherwise
 def main():
-    tweet = time.ctime() + ' The weather is lovely'
+    tweet = 'The weather is lovely'
     lat = 0.0
     lon = 1.0
     image_pathname = 'test_image.png'
-    status = send_tweet(tweet, lat, lon, hashtags=['testing'], image_pathname=image_pathname)
+    status = send_tweet(tweet, hashtags = None, image_pathname=image_pathname)
     print(status)
 
 
