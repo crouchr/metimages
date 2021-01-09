@@ -21,7 +21,7 @@ while True:
     print("{} written to disk".format(img_name))
     img_counter += 1
 
-    mins = 5        # 5 mins between images
+    mins = 10           #10 mins between images
     sleep_secs = mins * 60
     print(time.ctime() + ' sleeping...')
     time.sleep(sleep_secs)
